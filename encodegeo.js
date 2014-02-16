@@ -1,10 +1,11 @@
-var GeoJSON = require('geojson'),
+var gm = require('googlemaps'),
 fs = require('fs'),
 _ = require('lodash');
 
+
 fs.readFile('./all_routes.geojson', function(err, data) {
 	var datas = JSON.parse(data).features,
-		currentRoute, currentDirection, currentFile, lines, currentLine, writeString, currentProperties;
+		currentRoute, currentDirection, currentFile, lines, currentLine, writeString, currentProperties, currentPolylines, allPolylines = {};
 
 	_(datas).each(function(route) {
 		currentRoute = route.properties.route_number;
@@ -15,14 +16,20 @@ fs.readFile('./all_routes.geojson', function(err, data) {
 		lines = route.geometry.geometries;
 
 		currentLine = [];
+		currentPolylines = [];
 
 		_(lines).each(function(line) {
 			currentLine.unshift(line.coordinates);
+			currentPolylines.push(gm.createEncodedPolyline(_.clone(line.coordinates).reverse().join(',')));
 		});
 		
+		allPolylines[currentRoute] = allPolylines[currentRoute] || {};
+
+		allPolylines[currentRoute][currentDirection] = currentPolylines;
 		writeString = '{"type": "Feature","properties": ' + JSON.stringify(currentProperties) + ',"geometry": {"type": "MultiLineString","coordinates":' + JSON.stringify(currentLine) +  '}}';
 
-		fs.writeFileSync(currentFile, writeString)
+		fs.writeFileSync(currentFile, writeString);
+		fs.writeFileSync('./googlemap_polylines.json', JSON.stringify(allPolylines));
 	});
 
 })
