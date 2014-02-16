@@ -1,0 +1,1 @@
+{"type": "Feature","properties": {"route_number":50,"direction":1,"route_description":"\n            Cedar Mill\n          ","public_route_number":50,"direction_description":"\n            Morning Loop\n          ","frequent":"\n            False\n          ","type":"\n            BUS\n          "},"geometry": {"type": "MultiLineString","coordinates":[]}}
