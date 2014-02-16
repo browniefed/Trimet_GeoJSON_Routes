@@ -18,12 +18,6 @@ I wanted to do this on a Saturday for fun.
 
 The end
 
-Anything not listed below is maybe right, I don't know
 
-####Totally Wrong Routes
-
-* 1
-* 10
-
-####Parially Wrong Routes
-* 16
+#TODO
+Just use the GTFS........ duh
