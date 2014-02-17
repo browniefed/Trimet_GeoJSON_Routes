@@ -25,6 +25,7 @@ fs.readFile('./all_routes.geojson', function(err, data) {
 			});
 			currentPolylines.push(gm.createEncodedPolyline(groupPolyLines));
 		});
+		currentPolylines = _.uniq(currentPolylines);
 
 		allPolylines[currentRoute] = allPolylines[currentRoute] || {};
 
