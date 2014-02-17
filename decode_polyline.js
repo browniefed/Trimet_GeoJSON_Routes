@@ -33,5 +33,6 @@ function decodeLine (encoded) {
   return array;
 }
 
-
-module.exports.decodeLine = decodeLine;
+if (module && module.exports) {
+  module.exports.decodeLine = decodeLine;
+}
