@@ -19,3 +19,6 @@ Alternatively I've included the decode polyline function from the link above, al
 190 = yellow
 200 = green
 90 = red
+
+
+livemet has been updated with outlines of these routes and example usage
